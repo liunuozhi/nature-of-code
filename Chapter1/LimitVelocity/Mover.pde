@@ -6,16 +6,15 @@ class Mover{
     Mover(){
         loc = new PVector(width/2, height/2);
         vel = new PVector(random(-2, 2), random(-2, 2));
+        acc = new PVector(random(-2, 2), random(-2, 2));
     }
 
     //acceleration
     void update(){
-        acc = new PVector(random(-2, 2), random(-2, 2));
         this.checkEdge();
         this.limit();
         loc = loc.add(vel);
         vel = vel.add(acc);
-        println("currentVel: "+vel.mag());
     }
 
     // check loc inside of window
@@ -35,7 +34,7 @@ class Mover{
 
     // limit the velocity smaller than 10
     void limit(){
-        if (vel.mag() > 10) { vel.normalize(); }
+        if (vel.mag() > 10) { acc.limit(10); }
     }
 
     void display(){
