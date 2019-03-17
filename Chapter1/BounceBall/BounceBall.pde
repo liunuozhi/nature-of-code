@@ -10,7 +10,7 @@ void setup() {
 void draw() {
   background(255);
   location.add(velocity);
-  location.render();
+  render(location.x, location.y);
 
   // bounce
   if (location.x < 0 || location.x > width) {
@@ -19,4 +19,9 @@ void draw() {
   if (location.y < 0 || location.y > height) {
     velocity.y *= -1;
   }
+}
+
+void render(float x, float y){
+  float radius = 25;
+  ellipse(x, y, radius, radius);
 }
